@@ -50,7 +50,7 @@
                     <p class="text-sm font-extrabold tracking-tight text-white">SRUT & SKRB <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">PROJECTS</span></p>
                 </div>
             </div>
-                   </div>
+        </div>
     </header>
 
     <!-- MAIN CONTAINER -->
@@ -137,6 +137,17 @@
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Nomor Mesin</label><input type="text" id="srut-mesin" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Merk / Tipe</label><input type="text" id="srut-merk" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Jenis Kendaraan</label><input type="text" id="srut-pemilik" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
+                        <div>
+                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Status Progres</label>
+                            <select id="srut-status" class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
+                                <option value="Verifikator">Verifikator</option>
+                                <option value="Penguji">Penguji</option>
+                                <option value="Kasi Balai">Kasi Balai</option>
+                                <option value="Staff Kemenhub">Staff Kemenhub</option>
+                                <option value="Kasi Kemenhub">Kasi Kemenhub</option>
+                                <option value="Billing">Billing</option>
+                            </select>
+                        </div>
                         <div class="flex gap-2 pt-3">
                             <button type="submit" id="btn-submit-srut" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan</button>
                             <button type="button" id="btn-cancel-srut" onclick="cancelEditSrut()" class="hidden bg-slate-100 text-slate-600 font-code py-3 px-4 rounded-xl cursor-pointer hover:bg-slate-200 transition-all uppercase">Batal</button>
@@ -149,7 +160,7 @@
                     <div class="overflow-x-auto rounded-xl border border-slate-100">
                         <table class="w-full text-left text-sm">
                             <thead>
-                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi</th><th class="p-4 text-center">Tindakan</th></tr>
+                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi</th><th class="p-4 text-center">Status</th><th class="p-4 text-center">Tindakan</th></tr>
                             </thead>
                             <tbody id="table-srut-body" class="divide-y divide-slate-100 bg-white text-slate-700 font-medium"></tbody>
                         </table>
@@ -170,6 +181,17 @@
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Jenis Karoseri</label><input type="text" id="skrb-jenis" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Perusahaan Karoseri</label><input type="text" id="skrb-perusahaan" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Merk / Tipe Landasan</label><input type="text" id="skrb-landasan" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
+                        <div>
+                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Status Progres</label>
+                            <select id="skrb-status" class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
+                                <option value="Verifikator">Verifikator</option>
+                                <option value="Penguji">Penguji</option>
+                                <option value="Kasi Balai">Kasi Balai</option>
+                                <option value="Staff Kemenhub">Staff Kemenhub</option>
+                                <option value="Kasi Kemenhub">Kasi Kemenhub</option>
+                                <option value="Billing">Billing</option>
+                            </select>
+                        </div>
                         <div class="flex gap-2 pt-3">
                             <button type="submit" id="btn-submit-skrb" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan</button>
                             <button type="button" id="btn-cancel-skrb" onclick="cancelEditSkrb()" class="hidden bg-slate-100 text-slate-600 font-code py-3 px-4 rounded-xl cursor-pointer hover:bg-slate-200 transition-all uppercase">Batal</button>
@@ -182,7 +204,7 @@
                     <div class="overflow-x-auto rounded-xl border border-slate-100">
                         <table class="w-full text-left text-sm">
                             <thead>
-                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Tindakan</th></tr>
+                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status</th><th class="p-4 text-center">Tindakan</th></tr>
                             </thead>
                             <tbody id="table-skrb-body" class="divide-y divide-slate-100 bg-white text-slate-700 font-medium"></tbody>
                         </table>
@@ -193,7 +215,7 @@
 
         <!-- TAB CONTENT: SELESAI (ARCHIVE) -->
         <div id="content-archive" class="tab-content hidden space-y-6 animate-fadeIn">
-            <!-- SEARCH BAR IN ARCHIVE CONTAINER -->
+            <!-- SEARCH BAR -->
             <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-sm font-bold text-slate-900 tracking-tight">Arsip Digital</h2>
@@ -367,6 +389,30 @@
             });
         }
 
+        // --- MANAJEMEN WARNA BADGE STATUS ---
+        function getStatusBadge(status) {
+            const s = status ? status.trim().toLowerCase() : 'verifikator';
+            
+            if (s === 'verifikator') {
+                return `<span class="bg-amber-50 text-amber-700 border border-amber-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Verifikator</span>`;
+            } else if (s === 'penguji') {
+                return `<span class="bg-blue-50 text-blue-700 border border-blue-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Penguji</span>`;
+            } else if (s === 'kasi balai') {
+                return `<span class="bg-purple-50 text-purple-700 border border-purple-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Kasi Balai</span>`;
+            } else if (s === 'staff kemenhub') {
+                return `<span class="bg-orange-50 text-orange-700 border border-orange-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Staff Kemenhub</span>`;
+            } else if (s === 'kasi kemenhub') {
+                return `<span class="bg-indigo-50 text-indigo-700 border border-indigo-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Kasi Kemenhub</span>`;
+            } else if (s === 'billing') {
+                return `<span class="bg-rose-50 text-rose-700 border border-rose-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Billing</span>`;
+            } else if (s === 'selesai') {
+                return `<span class="bg-teal-50 text-teal-700 border border-teal-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Selesai</span>`;
+            }
+            
+            // Fallback untuk string pencocokan lain
+            return `<span class="bg-slate-50 text-slate-600 border border-slate-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">${status}</span>`;
+        }
+
         // --- MANAJEMEN DATA SRUT ---
         async function saveSrut(e) {
             e.preventDefault(); const isEdit = editSrutId !== null;
@@ -374,7 +420,8 @@
                 action: isEdit ? 'update_srut' : 'insert_srut', id: isEdit ? editSrutId.toString() : Date.now().toString(),
                 no: document.getElementById('srut-no').value, tanggal: document.getElementById('srut-tanggal').value,
                 rangka: document.getElementById('srut-rangka').value, mesin: document.getElementById('srut-mesin').value,
-                merk: document.getElementById('srut-merk').value, pemilik: document.getElementById('srut-pemilik').value
+                merk: document.getElementById('srut-merk').value, pemilik: document.getElementById('srut-pemilik').value,
+                status: document.getElementById('srut-status').value
             };
             toggleLoading(true);
             try { 
@@ -400,13 +447,14 @@
             document.getElementById('srut-mesin').value = item.mesin;
             document.getElementById('srut-merk').value = item.merk;
             document.getElementById('srut-pemilik').value = item.pemilik;
+            document.getElementById('srut-status').value = item.status || 'Verifikator';
             document.getElementById('btn-submit-srut').innerText = "UPDATE DATA";
             document.getElementById('btn-cancel-srut').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         function cancelEditSrut() {
-            editSrutId = null; document.getElementById('form-title-srut').innerText = "📝 Entri Dokumen SRUT"; document.getElementById('form-srut').reset();
+            editSrutId = null; document.getElementById('form-title-srut').innerText = "📝 Entri SRUT"; document.getElementById('form-srut').reset();
             document.getElementById('btn-submit-srut').innerText = "SIMPAN"; document.getElementById('btn-cancel-srut').classList.add('hidden');
         }
         
@@ -442,12 +490,13 @@
         }
         
         function renderSrutTable() {
-            const tbody = document.getElementById('table-srut-body'); if (srutList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
+            const tbody = document.getElementById('table-srut-body'); if (srutList.length === 0) { tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
             tbody.innerHTML = srutList.map(item => `
                 <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
                     <td class="p-4 font-bold font-code text-slate-900">${item.no}</td><td class="p-4 text-slate-500 text-xs">${formatDate(item.tanggal)}</td>
                     <td class="p-4 font-code text-[11px] leading-normal text-slate-600">Chassis: ${item.rangka}<br><span class="text-slate-400 font-normal">Engine: ${item.mesin}</span></td>
                     <td class="p-4 leading-normal"><span class="text-slate-900 font-semibold text-xs">${item.merk}</span><br><span class="text-[11px] text-slate-400 font-medium uppercase tracking-wide">${item.pemilik}</span></td>
+                    <td class="p-4 text-center">${getStatusBadge(item.status)}</td>
                     <td class="p-4 text-center"><div class="flex justify-center gap-1.5">
                         <button onclick="completeSrut('${item.id}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-teal-700 shadow-xs transition-all">✓ SELESAI</button>
                         <button onclick="editSrut('${item.id}')" class="text-slate-600 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-slate-100 transition-all">EDIT</button>
@@ -462,7 +511,8 @@
             const payload = {
                 action: isEdit ? 'update_skrb' : 'insert_skrb', id: isEdit ? editSkrbId.toString() : Date.now().toString(),
                 no: document.getElementById('skrb-no').value, tanggal: document.getElementById('skrb-tanggal').value,
-                jenis: document.getElementById('skrb-jenis').value, perusahaan: document.getElementById('skrb-perusahaan').value, landasan: document.getElementById('skrb-landasan').value
+                jenis: document.getElementById('skrb-jenis').value, perusahaan: document.getElementById('skrb-perusahaan').value, 
+                landasan: document.getElementById('skrb-landasan').value, status: document.getElementById('skrb-status').value
             };
             toggleLoading(true);
             try { 
@@ -487,13 +537,14 @@
             document.getElementById('skrb-jenis').value = item.jenis;
             document.getElementById('skrb-perusahaan').value = item.perusahaan;
             document.getElementById('skrb-landasan').value = item.landasan;
+            document.getElementById('skrb-status').value = item.status || 'Verifikator';
             document.getElementById('btn-submit-skrb').innerText = "UPDATE DATA";
             document.getElementById('btn-cancel-skrb').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         function cancelEditSkrb() {
-            editSkrbId = null; document.getElementById('form-title-skrb').innerText = "📝 Entri Rancang Bangun SKRB"; document.getElementById('form-skrb').reset();
+            editSkrbId = null; document.getElementById('form-title-skrb').innerText = "📝 Entri SKRB"; document.getElementById('form-skrb').reset();
             document.getElementById('btn-submit-skrb').innerText = "SIMPAN"; document.getElementById('btn-cancel-skrb').classList.add('hidden');
         }
         
@@ -529,12 +580,13 @@
         }
 
         function renderSkrbTable() {
-            const tbody = document.getElementById('table-skrb-body'); if (skrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
+            const tbody = document.getElementById('table-skrb-body'); if (skrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
             tbody.innerHTML = skrbList.map(item => `
                 <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
                     <td class="p-4 font-bold font-code text-slate-900">${item.no}</td><td class="p-4 text-slate-500 text-xs">${formatDate(item.tanggal)}</td>
                     <td class="p-4 leading-normal"><strong class="text-slate-900 text-xs font-semibold">${item.jenis}</strong><br><span class="text-slate-400 text-[11px]">${item.perusahaan}</span></td>
                     <td class="p-4 font-code text-[11px] text-slate-600">${item.landasan}</td>
+                    <td class="p-4 text-center">${getStatusBadge(item.status)}</td>
                     <td class="p-4 text-center"><div class="flex justify-center gap-1.5">
                         <button onclick="completeSkrb('${item.id}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-teal-700 shadow-xs transition-all">✓ SELESAI</button>
                         <button onclick="editSkrb('${item.id}')" class="text-slate-600 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-slate-100 transition-all">EDIT</button>
@@ -551,7 +603,18 @@
                     <td class="p-4 font-code text-xs text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
                     <td class="p-4 font-code text-[11px] leading-normal">Rangka: ${item.rangka}<br>Mesin: ${item.mesin}</td>
                     <td class="p-4 leading-normal"><span class="text-slate-700 text-xs font-medium">${item.merk}</span><br><span class="text-[11px] text-slate-400 font-mono uppercase">${item.pemilik}</span></td>
-                    <td class="p-4 text-center"><span class="bg-teal-50 text-teal-700 text-[10px] font-bold font-code px-2.5 py-1 rounded-full border border-teal-200/50">ARCHIVED</span></td>
+                    <td class="p-4 text-center">${getStatusBadge(item.status || 'Selesai')}</td>
+                </tr>`).join('');
+        }
+
+        function renderArchiveSkrbTable() {
+            const tbody = document.getElementById('table-arch-skrb-body'); if (archiveSkrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Gudang arsip kosong.</td></tr>`; return; }
+            tbody.innerHTML = archiveSkrbList.map(item => `
+                <tr class="hover:bg-slate-50/40 border-b border-slate-100 bg-slate-50/20 text-slate-500">
+                    <td class="p-4 font-code text-xs text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
+                    <td class="p-4 leading-normal"><strong class="text-slate-700 text-xs font-medium">${item.jenis}</strong><br><span class="text-slate-400 text-[11px]">${item.perusahaan}</span></td>
+                    <td class="p-4 font-code text-[11px]">${item.landasan}</td>
+                    <td class="p-4 text-center">${getStatusBadge(item.status || 'Selesai')}</td>
                 </tr>`).join('');
         }
 
@@ -573,17 +636,6 @@
                 const text = row.innerText.toLowerCase();
                 row.style.display = text.includes(query) ? '' : 'none';
             });
-        }
-
-        function renderArchiveSkrbTable() {
-            const tbody = document.getElementById('table-arch-skrb-body'); if (archiveSkrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Gudang arsip kosong.</td></tr>`; return; }
-            tbody.innerHTML = archiveSkrbList.map(item => `
-                <tr class="hover:bg-slate-50/40 border-b border-slate-100 bg-slate-50/20 text-slate-500">
-                    <td class="p-4 font-code text-xs text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
-                    <td class="p-4 leading-normal"><strong class="text-slate-700 text-xs font-medium">${item.jenis}</strong><br><span class="text-slate-400 text-[11px]">${item.perusahaan}</span></td>
-                    <td class="p-4 font-code text-[11px]">${item.landasan}</td>
-                    <td class="p-4 text-center"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold font-code px-2.5 py-1 rounded-full border border-emerald-200/50">ARCHIVED</span></td>
-                </tr>`).join('');
         }
 
         function formatDate(dateStr) {

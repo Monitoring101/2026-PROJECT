@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRUT & SKRB PROJECTS</title>
+    <title>SRUT-SKRB FLOW ENGINE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .font-code {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-code { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-teal-500/10 selection:text-teal-900">
@@ -30,15 +23,13 @@
         };
     </script>
 
-    <!-- LOADING SCREEN -->
     <div id="loading-screen" class="fixed inset-0 bg-slate-900/30 z-50 flex flex-col items-center justify-center hidden backdrop-blur-md transition-all">
         <div class="bg-white/90 p-8 rounded-2xl border border-slate-200/80 shadow-2xl flex flex-col items-center max-w-xs w-full">
             <div class="w-10 h-10 mb-4 border-4 border-teal-500/20 border-t-teal-600 rounded-full animate-spin"></div>
-            <span class="text-xs font-code font-bold tracking-widest text-slate-600 uppercase animate-pulse">Sinkronisasi Data....</span>
+            <span class="text-xs font-code font-bold tracking-widest text-slate-600 uppercase animate-pulse">Loading Database...</span>
         </div>
     </div>
 
-    <!-- HEADER -->
     <header class="bg-slate-950 text-white sticky top-0 z-40 shadow-sm border-b border-slate-800 bg-opacity-95 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
@@ -47,42 +38,38 @@
                 </div>
                 <div>
                     <h1 class="text-xs font-code font-bold tracking-widest uppercase text-slate-400">PT. MAHAKARYA JAYA SINERGI</h1>
-                    <p class="text-sm font-extrabold tracking-tight text-white">SRUT & SKRB <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">PROJECTS</span></p>
+                    <p class="text-sm font-extrabold tracking-tight text-white">SRUT & SKRB <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">DATA FLOW ENGINE</span></p>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto px-6 py-8">
         
-        <!-- NAVIGATION TABS -->
         <div class="border-b border-slate-200 mb-8 overflow-x-auto scrollbar-none">
             <nav class="-mb-px flex space-x-8 text-xs font-code font-bold uppercase tracking-wider min-w-max">
-                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-4 border-b-2 border-teal-600 text-teal-600 font-extrabold transition-all cursor-pointer flex items-center gap-2">📊 BERANDA</button>
-                <button onclick="switchTab('srut')" id="tab-srut" class="py-4 text-slate-400 hover:text-slate-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2">📝 SRUT</button>
-                <button onclick="switchTab('skrb')" id="tab-skrb" class="py-4 text-slate-400 hover:text-slate-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2">📋 SKRB</button>
-                <button onclick="switchTab('archive')" id="tab-archive" class="py-4 text-slate-400 hover:text-teal-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2">📦 SELESAI</button>
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-4 border-b-2 border-teal-600 text-teal-600 font-extrabold transition-all cursor-pointer flex items-center gap-2"><i class="bi bi-columns-gap"></i> DATA FLOW OVERVIEW</button>
+                <button onclick="switchTab('srut')" id="tab-srut" class="py-4 text-slate-400 hover:text-slate-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2"><i class="bi bi-folder-plus"></i> PROSES SRUT</button>
+                <button onclick="switchTab('skrb')" id="tab-skrb" class="py-4 text-slate-400 hover:text-slate-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2"><i class="bi bi-folder-plus"></i> PROSES SKRB</button>
+                <button onclick="switchTab('archive')" id="tab-archive" class="py-4 text-slate-400 hover:text-teal-600 transition-all border-b-2 border-transparent cursor-pointer flex items-center gap-2"><i class="bi bi-database"></i>SELESAI</button>
             </nav>
         </div>
 
-        <!-- TAB CONTENT: DASHBOARD -->
         <div id="content-dashboard" class="tab-content space-y-8 animate-fadeIn">
-            <!-- STATS CARDS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div class="glass-card rounded-2xl p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md">
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SRUT PROSES</p>
+                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SRUT DALAM PROSES</p>
                     <p class="text-3xl font-extrabold font-code text-slate-900 mt-2" id="count-srut">0</p>
                 </div>
                 <div class="glass-card rounded-2xl p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md bg-gradient-to-br from-white to-teal-500/5">
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-teal-500"></div>
-                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SRUT SELESAI</p>
+                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SRUT  SELESAI</p>
                     <p class="text-3xl font-extrabold font-code text-teal-600 mt-2" id="count-arch-srut">0</p>
                 </div>
                 <div class="glass-card rounded-2xl p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md">
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-slate-500"></div>
-                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SKRB PROSES</p>
+                    <p class="text-[10px] font-code font-bold text-slate-400 uppercase tracking-wider">SKRB DALAM PROSES</p>
                     <p class="text-3xl font-extrabold font-code text-slate-900 mt-2" id="count-skrb">0</p>
                 </div>
                 <div class="glass-card rounded-2xl p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md bg-gradient-to-br from-white to-emerald-500/5">
@@ -92,75 +79,71 @@
                 </div>
             </div>
 
-            <!-- CHARTS SECTION -->
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs lg:col-span-2">
-                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">📈 Produksi <span class="text-[10px] font-normal lowercase text-slate-400">(6 periode terakhir)</span></h3>
+                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2"><i class="bi bi-activity"></i> Data <span class="text-[10px] font-normal lowercase text-slate-400">(6 Bulan Terakhir)</span></h3>
                     <div class="h-64 relative"><canvas id="trendChart"></canvas></div>
                 </div>
                 
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col justify-between lg:col-span-1">
-                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-amber-600 mb-6 flex items-center gap-2">⏳ Proses</h3>
+                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-amber-600 mb-6 flex items-center gap-2"><i class="bi bi-hourglass-split"></i> Total Proses Aktif</h3>
                     <div class="h-44 relative flex items-center justify-center"><canvas id="prosesChart"></canvas></div>
-                    <div class="text-[10px] text-slate-400 font-code text-center mt-4">Perbandingan SRUT vs SKRB</div>
+                    <div class="text-[10px] text-slate-400 font-code text-center mt-4">Aktif di Alur Kerja</div>
                 </div>
 
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col justify-between lg:col-span-1">
-                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-teal-600 mb-6 flex items-center gap-2">📦 Selesai</h3>
+                    <h3 class="text-xs font-code font-bold uppercase tracking-wider text-teal-600 mb-6 flex items-center gap-2"><i class="bi bi-database"></i> Total Selesai</h3>
                     <div class="h-44 relative flex items-center justify-center"><canvas id="selesaiChart"></canvas></div>
-                    <div class="text-[10px] text-slate-400 font-code text-center mt-4">Perbandingan SRUT vs SKRB</div>
+                    <div class="text-[10px] text-slate-400 font-code text-center mt-4">Arsip Berstatus Selesai</div>
                 </div>
             </div>
 
-            <!-- REFRESH ACTION PANEL -->
             <div class="bg-slate-900 text-slate-200 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 border border-slate-800">
                 <div class="flex items-center gap-3">
-                    <span class="text-xl">💡</span>
-                    <p class="text-xs text-slate-400 leading-relaxed font-medium">Sistem menggunakan database Cloud Google Sheets yang terisolasi secara aman. Klik refresh jika data belum sinkron.</p>
+                    <span class="text-xl"><i class="bi bi-lightbulb"></i></span>
+                    <p class="text-xs text-slate-400 leading-relaxed font-medium">Sinkronisasi Aliran Data Instan Memetakan data flow dari lini birokrasi inti secara otomatis</p>
                 </div>
                 <button onclick="loadData()" class="w-full sm:w-auto text-xs bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-code font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-teal-500/20 hover:opacity-95 transition-all cursor-pointer uppercase tracking-wider">
-                    ⚡ Sinkronisasi Data
+                    <i class="bi bi-repeat"></i> Sinkronisasi Data
                 </button>
             </div>
         </div>
 
-        <!-- TAB CONTENT: DAFTAR SRUT -->
         <div id="content-srut" class="tab-content hidden animate-fadeIn">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- FORM -->
                 <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs h-fit">
-                    <h2 class="text-sm font-bold tracking-tight text-slate-900 border-b border-slate-100 pb-4 mb-5 flex items-center gap-2" id="form-title-srut">📝 Entri SRUT</h2>
+                    <h2 class="text-sm font-bold tracking-tight text-slate-900 border-b border-slate-100 pb-4 mb-5 flex items-center gap-2" id="form-title-srut"><i class="bi bi-plus"></i> Entri Registrasi Sertifikasi Uji Tipe</h2>
                     <form id="form-srut" onsubmit="saveSrut(event)" class="space-y-4 text-xs font-semibold text-slate-600">
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Nomor Pendaftaran</label><input type="text" id="srut-no" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
-                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tanggal Pendaftaran</label><input type="date" id="srut-tanggal" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
+                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tanggal Masuk</label><input type="date" id="srut-tanggal" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Nomor Rangka</label><input type="text" id="srut-rangka" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Nomor Mesin</label><input type="text" id="srut-mesin" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Merk / Tipe</label><input type="text" id="srut-merk" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
-                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Jenis Kendaraan</label><input type="text" id="srut-pemilik" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
+                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Jenis Kendaraan / Pemilik</label><input type="text" id="srut-pemilik" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div>
-                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Status Progres</label>
-                            <select id="srut-status" class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
-                                <option value="Verifikator">Verifikator</option>
-                                <option value="Penguji">Penguji</option>
-                                <option value="Kasi Balai">Kasi Balai</option>
-                                <option value="Staff Kemenhub">Staff Kemenhub</option>
-                                <option value="Kasi Kemenhub">Kasi Kemenhub</option>
-                                <option value="Billing">Billing</option>
+                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tahapan Alur Data (Flow)</label>
+                            <select id="srut-status" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-bold focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
+                                <option value="Verifikator">1. Verifikator</option>
+                                <option value="Penguji">2. Penguji</option>
+                                <option value="Kasi Balai">3. Kasi Balai</option>
+                                <option value="Staff Kemenhub">4. Staff Kemenhub</option>
+                                <option value="Kasi Kemenhub">5. Kasi Kemenhub</option>
+                                <option value="Billing">6. Billing</option>
+                                <option value="Selesai">7. Selesai</option>
                             </select>
                         </div>
                         <div class="flex gap-2 pt-3">
-                            <button type="submit" id="btn-submit-srut" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan</button>
+                            <button type="submit" id="btn-submit-srut" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan Berkas</button>
                             <button type="button" id="btn-cancel-srut" onclick="cancelEditSrut()" class="hidden bg-slate-100 text-slate-600 font-code py-3 px-4 rounded-xl cursor-pointer hover:bg-slate-200 transition-all uppercase">Batal</button>
                         </div>
                     </form>
                 </div>
-                <!-- DATA TABLE -->
                 <div class="lg:col-span-2 bg-white border border-slate-200 p-6 rounded-2xl shadow-xs">
-                    <h2 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-4">🖥️ Berkas Aktif - SRUT</h2>
+                    <h2 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-4"><i class="bi bi-display"></i> Monitor Data - SRUT</h2>
                     <div class="overflow-x-auto rounded-xl border border-slate-100">
                         <table class="w-full text-left text-sm">
                             <thead>
-                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi</th><th class="p-4 text-center">Status</th><th class="p-4 text-center">Tindakan</th></tr>
+                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4"> No Pendaftaran</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi Kendaraaan</th><th class="p-4">Alur Progres (Status)</th><th class="p-4 text-center">Kendali Proses</th></tr>
                             </thead>
                             <tbody id="table-srut-body" class="divide-y divide-slate-100 bg-white text-slate-700 font-medium"></tbody>
                         </table>
@@ -169,42 +152,40 @@
             </div>
         </div>
 
-        <!-- TAB CONTENT: DAFTAR SKRB -->
         <div id="content-skrb" class="tab-content hidden animate-fadeIn">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- FORM -->
                 <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs h-fit">
-                    <h2 class="text-sm font-bold tracking-tight text-slate-900 border-b border-slate-100 pb-4 mb-5 flex items-center gap-2" id="form-title-skrb">📝 Entri SKRB</h2>
+                    <h2 class="text-sm font-bold tracking-tight text-slate-900 border-b border-slate-100 pb-4 mb-5 flex items-center gap-2" id="form-title-skrb"><i class="bi bi-plus"></i> Entri Surat Keterangan Rancang Bangun</h2>
                     <form id="form-skrb" onsubmit="saveSkrb(event)" class="space-y-4 text-xs font-semibold text-slate-600">
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Nomor Pendaftaran</label><input type="text" id="skrb-no" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
-                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tanggal Pendaftaran</label><input type="date" id="skrb-tanggal" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
+                        <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tanggal Masuk</label><input type="date" id="skrb-tanggal" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Jenis Karoseri</label><input type="text" id="skrb-jenis" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Perusahaan Karoseri</label><input type="text" id="skrb-perusahaan" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div><label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Merk / Tipe Landasan</label><input type="text" id="skrb-landasan" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all"></div>
                         <div>
-                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Status Progres</label>
-                            <select id="skrb-status" class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
-                                <option value="Verifikator">Verifikator</option>
-                                <option value="Penguji">Penguji</option>
-                                <option value="Kasi Balai">Kasi Balai</option>
-                                <option value="Staff Kemenhub">Staff Kemenhub</option>
-                                <option value="Kasi Kemenhub">Kasi Kemenhub</option>
-                                <option value="Billing">Billing</option>
+                            <label class="block mb-1.5 font-code text-[11px] text-slate-400 uppercase">Tahapan Alur Data (Flow)</label>
+                            <select id="skrb-status" required class="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-800 font-bold focus:outline-none focus:border-teal-500 focus:bg-white transition-all">
+                                <option value="Verifikator">1. Verifikator</option>
+                                <option value="Penguji">2. Penguji</option>
+                                <option value="Kasi Balai">3. Kasi Balai</option>
+                                <option value="Staff Kemenhub">4. Staff Kemenhub</option>
+                                <option value="Kasi Kemenhub">5. Kasi Kemenhub</option>
+                                <option value="Billing">6. Billing</option>
+                                <option value="Selesai">7. Selesai</option>
                             </select>
                         </div>
                         <div class="flex gap-2 pt-3">
-                            <button type="submit" id="btn-submit-skrb" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan</button>
+                            <button type="submit" id="btn-submit-skrb" class="w-full bg-slate-900 text-white font-code font-bold py-3 rounded-xl cursor-pointer tracking-wider hover:bg-slate-800 transition-all uppercase shadow-md shadow-slate-900/10">Simpan Berkas</button>
                             <button type="button" id="btn-cancel-skrb" onclick="cancelEditSkrb()" class="hidden bg-slate-100 text-slate-600 font-code py-3 px-4 rounded-xl cursor-pointer hover:bg-slate-200 transition-all uppercase">Batal</button>
                         </div>
                     </form>
                 </div>
-                <!-- DATA TABLE -->
                 <div class="lg:col-span-2 bg-white border border-slate-200 p-6 rounded-2xl shadow-xs">
-                    <h2 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-4">🖥️ Berkas Aktif - SKRB</h2>
+                    <h2 class="text-xs font-code font-bold uppercase tracking-wider text-slate-400 mb-4"><i class="bi bi-display"></i> Monitor Data - SKRB</h2>
                     <div class="overflow-x-auto rounded-xl border border-slate-100">
                         <table class="w-full text-left text-sm">
                             <thead>
-                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Daftar</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status</th><th class="p-4 text-center">Tindakan</th></tr>
+                                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4">Alur Progres (Status)</th><th class="p-4 text-center">Kendali Proses</th></tr>
                             </thead>
                             <tbody id="table-skrb-body" class="divide-y divide-slate-100 bg-white text-slate-700 font-medium"></tbody>
                         </table>
@@ -213,45 +194,35 @@
             </div>
         </div>
 
-        <!-- TAB CONTENT: SELESAI (ARCHIVE) -->
         <div id="content-archive" class="tab-content hidden space-y-6 animate-fadeIn">
-            <!-- SEARCH BAR -->
             <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-sm font-bold text-slate-900 tracking-tight">Arsip Digital</h2>
-                    <p class="text-xs text-slate-400">Menampilkan seluruh data penyelesaian proyek SRUT & SKRB.</p>
+                    <h2 class="text-sm font-bold text-slate-900 tracking-tight">Repositori Data Tuntas</h2>
+                    <p class="text-xs text-slate-400">Repositori digital yang mengamankan seluruh rekam jejak dokumen SRUT & SKRB yang telah tuntas diproses.</p>
                 </div>
                 <div class="w-full md:w-80 relative">
-                    <input 
-                        type="text" 
-                        id="search-archive" 
-                        oninput="handleSearchArchive()" 
-                        placeholder="Cari arsip berdasarkan keyword..." 
-                        class="w-full px-4 py-2 text-xs border border-slate-200 rounded-xl font-medium focus:outline-none focus:border-teal-500 bg-slate-50/50 text-slate-700 placeholder-slate-400 transition-all"
-                    >
+                    <input type="text" id="search-archive" oninput="handleSearchArchive()" placeholder="Cari arsip..." class="w-full px-4 py-2 text-xs border border-slate-200 rounded-xl font-medium focus:outline-none focus:border-teal-500 bg-slate-50/50 text-slate-700">
                 </div>
             </div>
 
-            <!-- ARCHIVE TABLE SRUT -->
             <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs">
-                <h2 class="text-xs font-code font-bold uppercase tracking-wider text-teal-600 mb-4 flex items-center gap-2">📦 Arsip SRUT</h2>
+                <h2 class="text-xs font-code font-bold uppercase tracking-wider text-teal-600 mb-4 flex items-center gap-2"><i class="bi bi-display"></i> DATA SRUT</h2>
                 <div class="overflow-x-auto rounded-xl border border-slate-100">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Selesai</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi Pemilik</th><th class="p-4 text-center">Status</th></tr>
+                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Input</th><th class="p-4">Identitas Fisik</th><th class="p-4">Spesifikasi Pemilik</th><th class="p-4 text-center">Status Akhir</th></tr>
                         </thead>
                         <tbody id="table-arch-srut-body" class="divide-y divide-slate-100 bg-white text-slate-600"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- ARCHIVE TABLE SKRB -->
             <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs">
-                <h2 class="text-xs font-code font-bold uppercase tracking-wider text-emerald-600 mb-4 flex items-center gap-2">📦 Arsip SKRB</h2>
+                <h2 class="text-xs font-code font-bold uppercase tracking-wider text-emerald-600 mb-4 flex items-center gap-2"><i class="bi bi-display"></i> DATA SKRB</h2>
                 <div class="overflow-x-auto rounded-xl border border-slate-100">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Selesai</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status</th></tr>
+                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Input</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status Akhir</th></tr>
                         </thead>
                         <tbody id="table-arch-skrb-body" class="divide-y divide-slate-100 bg-white text-slate-600"></tbody>
                     </table>
@@ -262,7 +233,11 @@
     </main>
 
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeu7XmRo5te_oMCrfH1ZcqvwsnuuOkQdn6SfxSLYnjfzrXCa0qh3iS2_kBF-8WgCoH/exec";
+        // ⚠️ PASTE URL WEB APP BARU HASIL DEPLOY APPS SCRIPT ANDA DI SINI! (Wajib diakhiri /exec)
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDVj5A3FwBk7bbagV4bIsfL-g3b8bXnzZEf_EIlevsT-fDYd2dSk6VS0z9mkIV28Bz/exec";
+
+        // Definisi Urutan Tahapan Alur Kerja (Flow Steps)
+        const FLOW_STEPS = ["Verifikator", "Penguji", "Kasi Balai", "Staff Kemenhub", "Kasi Kemenhub", "Billing", "Selesai"];
 
         let srutList = [], skrbList = [], archiveSrutList = [], archiveSkrbList = [];
         let editSrutId = null, editSkrbId = null;
@@ -271,7 +246,7 @@
         function toggleLoading(show) { document.getElementById('loading-screen').classList.toggle('hidden', !show); }
 
         async function loadData() {
-            if(!SCRIPT_URL || SCRIPT_URL.includes("PASTE_URL")) return alert("Mohon masukkan URL Web App Google Script Anda!");
+            if(!SCRIPT_URL || SCRIPT_URL.trim() === "" || SCRIPT_URL.includes("PASTE_URL")) return alert("Mohon masukkan SCRIPT_URL Web App hasil deploy Anda pada file HTML!");
             toggleLoading(true);
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=read`);
@@ -284,7 +259,6 @@
 
                 renderSrutTable(); renderSkrbTable();
                 renderArchiveSrutTable(); renderArchiveSkrbTable();
-                
                 handleSearchArchive();
 
                 document.getElementById('count-srut').innerText = srutList.length;
@@ -293,8 +267,10 @@
                 document.getElementById('count-arch-skrb').innerText = archiveSkrbList.length;
                 
                 generateCharts();
-            } catch (err) { alert("Gagal mengambil data dari Google Sheet."); } 
-            finally { toggleLoading(false); }
+            } catch (err) { 
+                alert("Koneksi database gagal! Periksa deployment Apps Script Anda."); 
+                console.error(err);
+            } finally { toggleLoading(false); }
         }
 
         function switchTab(tabId) {
@@ -308,14 +284,26 @@
             
             const activeTab = document.getElementById(`tab-${tabId}`);
             if(activeTab) {
-                if(tabId === 'archive') {
-                    activeTab.className = "py-4 border-b-2 border-teal-600 text-teal-600 font-extrabold transition-all cursor-pointer flex items-center gap-2";
-                } else {
-                    activeTab.className = "py-4 border-b-2 border-slate-900 text-slate-900 font-extrabold transition-all cursor-pointer flex items-center gap-2";
-                }
+                activeTab.className = "py-4 border-b-2 border-teal-600 text-teal-600 font-extrabold transition-all cursor-pointer flex items-center gap-2";
             }
         }
 
+        // Penghasil badge warna dinamis per kedudukan instansi flow
+        function getStatusBadge(status) {
+            let colors = "bg-slate-100 text-slate-700 border-slate-300";
+            switch(status) {
+                case "Verifikator": colors = "bg-blue-50 text-blue-700 border-blue-200"; break;
+                case "Penguji": colors = "bg-purple-50 text-purple-700 border-purple-200"; break;
+                case "Kasi Balai": colors = "bg-indigo-50 text-indigo-700 border-indigo-200"; break;
+                case "Staff Kemenhub": colors = "bg-amber-50 text-amber-700 border-amber-200"; break;
+                case "Kasi Kemenhub": colors = "bg-orange-50 text-orange-700 border-orange-200"; break;
+                case "Billing": colors = "bg-rose-50 text-rose-700 border-rose-200"; break;
+                case "Selesai": colors = "bg-emerald-50 text-emerald-700 border-emerald-200 animate-pulse"; break;
+            }
+            return `<span class="inline-block px-2.5 py-1 text-[11px] font-bold font-code rounded-lg border ${colors}">${status}</span>`;
+        }
+
+        // Generator Diagram Real-time Menyesuaikan Database Asli
         function generateCharts() {
             const canvasTrend = document.getElementById('trendChart');
             const canvasProses = document.getElementById('prosesChart');
@@ -361,17 +349,14 @@
                         { label: 'SKRB', data: skrbCounts, borderColor: '#64748b', backgroundColor: 'rgba(100, 116, 139, 0.04)', fill: true, tension: 0.3, borderWidth: 2, pointRadius: 2 }
                     ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Plus Jakarta Sans' } } } }, scales: { y: { stepSize: 1, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Plus Jakarta Sans' } } } }, scales: { y: { ticks: { stepSize: 1 }, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
             });
 
             prosesChartInstance = new Chart(ctxProses, {
                 type: 'doughnut',
                 data: { 
-                    labels: ['SRUT', 'SKRB'], 
-                    datasets: [{ 
-                        data: [srutList.length, skrbList.length], 
-                        backgroundColor: ['#f59e0b', '#64748b'], borderWidth: 0
-                    }] 
+                    labels: ['SRUT Aktif', 'SKRB Aktif'], 
+                    datasets: [{ data: [srutList.length, skrbList.length], backgroundColor: ['#f59e0b', '#64748b'], borderWidth: 0 }] 
                 },
                 options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Plus Jakarta Sans' } } } } }
             });
@@ -379,41 +364,14 @@
             selesaiChartInstance = new Chart(ctxSelesai, {
                 type: 'doughnut',
                 data: { 
-                    labels: ['SRUT', 'SKRB'], 
-                    datasets: [{ 
-                        data: [archiveSrutList.length, archiveSkrbList.length], 
-                        backgroundColor: ['#0d9488', '#10b981'], borderWidth: 0
-                    }] 
+                    labels: ['SRUT Selesai', 'SKRB Selesai'], 
+                    datasets: [{ data: [archiveSrutList.length, archiveSkrbList.length], backgroundColor: ['#0d9488', '#10b981'], borderWidth: 0 }] 
                 },
                 options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Plus Jakarta Sans' } } } } }
             });
         }
 
-        // --- MANAJEMEN WARNA BADGE STATUS ---
-        function getStatusBadge(status) {
-            const s = status ? status.trim().toLowerCase() : 'verifikator';
-            
-            if (s === 'verifikator') {
-                return `<span class="bg-amber-50 text-amber-700 border border-amber-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Verifikator</span>`;
-            } else if (s === 'penguji') {
-                return `<span class="bg-blue-50 text-blue-700 border border-blue-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Penguji</span>`;
-            } else if (s === 'kasi balai') {
-                return `<span class="bg-purple-50 text-purple-700 border border-purple-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Kasi Balai</span>`;
-            } else if (s === 'staff kemenhub') {
-                return `<span class="bg-orange-50 text-orange-700 border border-orange-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Staff Kemenhub</span>`;
-            } else if (s === 'kasi kemenhub') {
-                return `<span class="bg-indigo-50 text-indigo-700 border border-indigo-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Kasi Kemenhub</span>`;
-            } else if (s === 'billing') {
-                return `<span class="bg-rose-50 text-rose-700 border border-rose-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Billing</span>`;
-            } else if (s === 'selesai') {
-                return `<span class="bg-teal-50 text-teal-700 border border-teal-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">Selesai</span>`;
-            }
-            
-            // Fallback untuk string pencocokan lain
-            return `<span class="bg-slate-50 text-slate-600 border border-slate-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-code uppercase">${status}</span>`;
-        }
-
-        // --- MANAJEMEN DATA SRUT ---
+        // --- MANAJEMEN CORE SRUT ---
         async function saveSrut(e) {
             e.preventDefault(); const isEdit = editSrutId !== null;
             const payload = {
@@ -425,87 +383,93 @@
             };
             toggleLoading(true);
             try { 
-                await fetch(SCRIPT_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload) 
-                }); 
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) }); 
                 if(isEdit) cancelEditSrut(); else document.getElementById('form-srut').reset(); 
                 await loadData(); 
-            } 
-            catch (error) { alert("Gagal memproses data!"); } finally { toggleLoading(false); }
+            } catch (error) { alert("Gagal memproses data!"); } finally { toggleLoading(false); }
         }
-        
+
+        async function advanceSrutStatus(id, currentStatus) {
+            const currentIndex = FLOW_STEPS.indexOf(currentStatus);
+            if (currentIndex === -1 || currentIndex >= FLOW_STEPS.length - 1) return;
+            const nextStatus = FLOW_STEPS[currentIndex + 1];
+            
+            toggleLoading(true);
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({ action: 'update_status_srut', id: id.toString(), status: nextStatus })
+                });
+                await loadData();
+            } catch (error) { alert("Gagal menaikkan status!"); } finally { toggleLoading(false); }
+        }
+
+        async function archiveSrut(id) {
+            if(confirm('Arsipkan berkas ini ke gudang Selesai?')) {
+                toggleLoading(true);
+                try { 
+                    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'complete_srut', id: id.toString() }) }); 
+                    await loadData(); 
+                } catch (error) { alert("Gagal mengarsipkan!"); } finally { toggleLoading(false); }
+            }
+        }
+
+        async function deleteSrut(id) {
+            if(confirm('Hapus berkas aktif ini?')) { 
+                toggleLoading(true); 
+                try { 
+                    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'delete_srut', id: id.toString() }) }); 
+                    await loadData(); 
+                } catch (error) { alert("Gagal menghapus!"); } finally { toggleLoading(false); } 
+            }
+        }
+
         function editSrut(id) {
             const item = srutList.find(i => i.id == id); if(!item) return;
             editSrutId = id;
-            document.getElementById('form-title-srut').innerText = "⚙️ Edit Berkas SRUT";
+            document.getElementById('form-title-srut').innerText = "Update Data SRUT";
             document.getElementById('srut-no').value = item.no;
             document.getElementById('srut-tanggal').value = item.tanggal ? new Date(item.tanggal).toISOString().split('T')[0] : '';
             document.getElementById('srut-rangka').value = item.rangka;
             document.getElementById('srut-mesin').value = item.mesin;
             document.getElementById('srut-merk').value = item.merk;
             document.getElementById('srut-pemilik').value = item.pemilik;
-            document.getElementById('srut-status').value = item.status || 'Verifikator';
+            document.getElementById('srut-status').value = item.status;
             document.getElementById('btn-submit-srut').innerText = "UPDATE DATA";
             document.getElementById('btn-cancel-srut').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
+
         function cancelEditSrut() {
-            editSrutId = null; document.getElementById('form-title-srut').innerText = "📝 Entri SRUT"; document.getElementById('form-srut').reset();
-            document.getElementById('btn-submit-srut').innerText = "SIMPAN"; document.getElementById('btn-cancel-srut').classList.add('hidden');
-        }
-        
-        async function completeSrut(id) {
-            if(confirm('Arsipkan pengerjaan berkas SRUT ini ke sistem selesai?')) {
-                toggleLoading(true);
-                try { 
-                    await fetch(SCRIPT_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ action: 'complete_srut', id: id.toString() }) 
-                    }); 
-                    await loadData(); 
-                } 
-                catch (error) { alert("Gagal mengarsipkan!"); } finally { toggleLoading(false); }
-            }
-        }
-        
-        async function deleteSrut(id) {
-            if(confirm('Hapus log antrean SRUT aktif ini secara permanen?')) { 
-                toggleLoading(true); 
-                try { 
-                    await fetch(SCRIPT_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ action: 'delete_srut', id: id.toString() }) 
-                    }); 
-                    await loadData(); 
-                } catch (error) { alert("Gagal menghapus!"); } finally { toggleLoading(false); } 
-            }
-        }
-        
-        function renderSrutTable() {
-            const tbody = document.getElementById('table-srut-body'); if (srutList.length === 0) { tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
-            tbody.innerHTML = srutList.map(item => `
-                <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
-                    <td class="p-4 font-bold font-code text-slate-900">${item.no}</td><td class="p-4 text-slate-500 text-xs">${formatDate(item.tanggal)}</td>
-                    <td class="p-4 font-code text-[11px] leading-normal text-slate-600">Chassis: ${item.rangka}<br><span class="text-slate-400 font-normal">Engine: ${item.mesin}</span></td>
-                    <td class="p-4 leading-normal"><span class="text-slate-900 font-semibold text-xs">${item.merk}</span><br><span class="text-[11px] text-slate-400 font-medium uppercase tracking-wide">${item.pemilik}</span></td>
-                    <td class="p-4 text-center">${getStatusBadge(item.status)}</td>
-                    <td class="p-4 text-center"><div class="flex justify-center gap-1.5">
-                        <button onclick="completeSrut('${item.id}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-teal-700 shadow-xs transition-all">✓ SELESAI</button>
-                        <button onclick="editSrut('${item.id}')" class="text-slate-600 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-slate-100 transition-all">EDIT</button>
-                        <button onclick="deleteSrut('${item.id}')" class="text-red-600 bg-red-50/50 hover:bg-red-50 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer transition-all">DROP</button>
-                    </div></td>
-                </tr>`).join('');
+            editSrutId = null; document.getElementById('form-title-srut').innerText = "Entri Registrasi Sertifikasi Uji Tipe"; document.getElementById('form-srut').reset();
+            document.getElementById('btn-submit-srut').innerText = "Simpan Berkas"; document.getElementById('btn-cancel-srut').classList.add('hidden');
         }
 
-        // --- MANAJEMEN DATA SKRB ---
+        function renderSrutTable() {
+            const tbody = document.getElementById('table-srut-body'); 
+            if (srutList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Belum ada data flow aktif.</td></tr>`; return; }
+            tbody.innerHTML = srutList.map(item => {
+                const isMax = item.status === "Selesai";
+                const actionButton = isMax 
+                    ? `<button onclick="archiveSrut('${item.id}')" class="text-white bg-emerald-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-emerald-700 transition-all"><i class="bi bi-database"></i>SELESAI</button>`
+                    : `<button onclick="advanceSrutStatus('${item.id}', '${item.status}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-teal-700 transition-all flex items-center gap-1"><i class="bi bi-arrow-right-short"></i>STATUS</button>`;
+                
+                return `
+                <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
+                    <td class="p-4 font-bold font-code text-slate-900">${item.no}<br><span class="text-[10px] font-normal text-slate-400">${formatDate(item.tanggal)}</span></td>
+                    <td class="p-4 font-code text-[11px] text-slate-600">Chassis: ${item.rangka}<br>Engine: ${item.mesin}</td>
+                    <td class="p-4 text-xs"><strong class="text-slate-900">${item.merk}</strong><br><span class="uppercase font-code text-[10px] text-slate-400">${item.pemilik}</span></td>
+                    <td class="p-4">${getStatusBadge(item.status)}</td>
+                    <td class="p-4 text-center"><div class="flex justify-center items-center gap-1">
+                        ${actionButton}
+                        <button onclick="editSrut('${item.id}')" class="text-slate-600 bg-slate-100 px-2 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-slate-200"><i class="bi bi-pencil-square"></i></button>
+                        <button onclick="deleteSrut('${item.id}')" class="text-red-600 bg-red-50 hover:bg-red-100 px-2 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer"><i class="bi bi-trash"></i></button>
+                    </div></td>
+                </tr>`;
+            }).join('');
+        }
+
+        // --- MANAJEMEN CORE SKRB ---
         async function saveSkrb(e) {
             e.preventDefault(); const isEdit = editSkrbId !== null;
             const payload = {
@@ -516,139 +480,128 @@
             };
             toggleLoading(true);
             try { 
-                await fetch(SCRIPT_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload) 
-                }); 
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) }); 
                 if(isEdit) cancelEditSkrb(); else document.getElementById('form-skrb').reset(); 
                 await loadData(); 
-            }
-            catch (error) { alert("Gagal memproses data!"); } finally { toggleLoading(false); }
+            } catch (error) { alert("Gagal memproses data!"); } finally { toggleLoading(false); }
         }
-        
-        function editSkrb(id) {
-            const item = skrbList.find(i => i.id == id); if(!item) return;
-            editSkrbId = id;
-            document.getElementById('form-title-skrb').innerText = "⚙️ Edit Berkas SKRB";
-            document.getElementById('skrb-no').value = item.no;
-            document.getElementById('skrb-tanggal').value = item.tanggal ? new Date(item.tanggal).toISOString().split('T')[0] : '';
-            document.getElementById('skrb-jenis').value = item.jenis;
-            document.getElementById('skrb-perusahaan').value = item.perusahaan;
-            document.getElementById('skrb-landasan').value = item.landasan;
-            document.getElementById('skrb-status').value = item.status || 'Verifikator';
-            document.getElementById('btn-submit-skrb').innerText = "UPDATE DATA";
-            document.getElementById('btn-cancel-skrb').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        async function advanceSkrbStatus(id, currentStatus) {
+            const currentIndex = FLOW_STEPS.indexOf(currentStatus);
+            if (currentIndex === -1 || currentIndex >= FLOW_STEPS.length - 1) return;
+            const nextStatus = FLOW_STEPS[currentIndex + 1];
+            
+            toggleLoading(true);
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({ action: 'update_status_skrb', id: id.toString(), status: nextStatus })
+                });
+                await loadData();
+            } catch (error) { alert("Gagal menaikkan status!"); } finally { toggleLoading(false); }
         }
-        
-        function cancelEditSkrb() {
-            editSkrbId = null; document.getElementById('form-title-skrb').innerText = "📝 Entri SKRB"; document.getElementById('form-skrb').reset();
-            document.getElementById('btn-submit-skrb').innerText = "SIMPAN"; document.getElementById('btn-cancel-skrb').classList.add('hidden');
-        }
-        
-        async function completeSkrb(id) {
-            if(confirm('Arsipkan pengerjaan berkas SKRB ini ke sistem selesai?')) {
+
+        async function archiveSkrb(id) {
+            if(confirm('Arsipkan berkas ini ke gudang Selesai?')) {
                 toggleLoading(true);
                 try { 
-                    await fetch(SCRIPT_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ action: 'complete_skrb', id: id.toString() }) 
-                    }); 
+                    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'complete_skrb', id: id.toString() }) }); 
                     await loadData(); 
-                } 
-                catch (error) { alert("Gagal mengarsipkan!"); } finally { toggleLoading(false); }
+                } catch (error) { alert("Gagal mengarsipkan!"); } finally { toggleLoading(false); }
             }
         }
-        
+
         async function deleteSkrb(id) {
-            if(confirm('Hapus log antrean SKRB aktif ini secara permanen?')) { 
+            if(confirm('Hapus berkas aktif ini?')) { 
                 toggleLoading(true); 
                 try { 
-                    await fetch(SCRIPT_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ action: 'delete_skrb', id: id.toString() }) 
-                    }); 
+                    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'delete_skrb', id: id.toString() }) }); 
                     await loadData(); 
                 } catch (error) { alert("Gagal menghapus!"); } finally { toggleLoading(false); } 
             }
         }
 
-        function renderSkrbTable() {
-            const tbody = document.getElementById('table-skrb-body'); if (skrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic font-medium">Belum ada antrean berkas terdaftar.</td></tr>`; return; }
-            tbody.innerHTML = skrbList.map(item => `
-                <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
-                    <td class="p-4 font-bold font-code text-slate-900">${item.no}</td><td class="p-4 text-slate-500 text-xs">${formatDate(item.tanggal)}</td>
-                    <td class="p-4 leading-normal"><strong class="text-slate-900 text-xs font-semibold">${item.jenis}</strong><br><span class="text-slate-400 text-[11px]">${item.perusahaan}</span></td>
-                    <td class="p-4 font-code text-[11px] text-slate-600">${item.landasan}</td>
-                    <td class="p-4 text-center">${getStatusBadge(item.status)}</td>
-                    <td class="p-4 text-center"><div class="flex justify-center gap-1.5">
-                        <button onclick="completeSkrb('${item.id}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-teal-700 shadow-xs transition-all">✓ SELESAI</button>
-                        <button onclick="editSkrb('${item.id}')" class="text-slate-600 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer hover:bg-slate-100 transition-all">EDIT</button>
-                        <button onclick="deleteSkrb('${item.id}')" class="text-red-600 bg-red-50/50 hover:bg-red-50 px-2.5 py-1.5 rounded-lg font-code font-bold text-[11px] cursor-pointer transition-all">DROP</button>
-                    </div></td>
-                </tr>`).join('');
+        function editSkrb(id) {
+            const item = skrbList.find(i => i.id == id); if(!item) return;
+            editSkrbId = id;
+            document.getElementById('form-title-skrb').innerText = "Updater Data SKRB";
+            document.getElementById('skrb-no').value = item.no;
+            document.getElementById('skrb-tanggal').value = item.tanggal ? new Date(item.tanggal).toISOString().split('T')[0] : '';
+            document.getElementById('skrb-jenis').value = item.jenis;
+            document.getElementById('skrb-perusahaan').value = item.perusahaan;
+            document.getElementById('skrb-landasan').value = item.landasan;
+            document.getElementById('skrb-status').value = item.status;
+            document.getElementById('btn-submit-skrb').innerText = "UPDATE DATA";
+            document.getElementById('btn-cancel-skrb').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- MANAJEMEN DATA ARSIP ---
+        function cancelEditSkrb() {
+            editSkrbId = null; document.getElementById('form-title-skrb').innerText = "Entri Surat Keterangan Rancang Bangun"; document.getElementById('form-skrb').reset();
+            document.getElementById('btn-submit-skrb').innerText = "Simpan Berkas"; document.getElementById('btn-cancel-skrb').classList.add('hidden');
+        }
+
+        function renderSkrbTable() {
+            const tbody = document.getElementById('table-skrb-body'); 
+            if (skrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Belum ada data flow aktif.</td></tr>`; return; }
+            tbody.innerHTML = skrbList.map(item => {
+                const isMax = item.status === "Selesai";
+                const actionButton = isMax 
+                    ? `<button onclick="archiveSkrb('${item.id}')" class="text-white bg-emerald-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-emerald-700 transition-all"><i class="bi bi-database"></i>SELESAI</button>`
+                    : `<button onclick="advanceSkrbStatus('${item.id}', '${item.status}')" class="text-white bg-teal-600 px-2.5 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-teal-700 transition-all flex items-center gap-1"><i class="bi bi-arrow-right-short"></i> STATUS</button>`;
+
+                return `
+                <tr class="hover:bg-slate-50/80 transition-all border-b border-slate-100">
+                    <td class="p-4 font-bold font-code text-slate-900">${item.no}<br><span class="text-[10px] font-normal text-slate-400">${formatDate(item.tanggal)}</span></td>
+                    <td class="p-4 text-xs"><strong class="text-slate-900">${item.jenis}</strong><br><span class="text-slate-400">${item.perusahaan}</span></td>
+                    <td class="p-4 font-code text-[11px] text-slate-600">${item.landasan}</td>
+                    <td class="p-4">${getStatusBadge(item.status)}</td>
+                    <td class="p-4 text-center"><div class="flex justify-center items-center gap-1">
+                        ${actionButton}
+                        <button onclick="editSkrb('${item.id}')" class="text-slate-600 bg-slate-100 px-2 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer hover:bg-slate-200"><i class="bi bi-pencil-square"></i></button>
+                        <button onclick="deleteSkrb('${item.id}')" class="text-red-600 bg-red-50 hover:bg-red-100 px-2 py-1.5 rounded-lg font-code font-bold text-[10px] cursor-pointer"><i class="bi bi-trash"></i></button>
+                    </div></td>
+                </tr>`;
+            }).join('');
+        }
+
+        // --- ARSIP RENDER ---
         function renderArchiveSrutTable() {
-            const tbody = document.getElementById('table-arch-srut-body'); if (archiveSrutList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Gudang arsip kosong.</td></tr>`; return; }
+            const tbody = document.getElementById('table-arch-srut-body'); if (archiveSrutList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip kosong.</td></tr>`; return; }
             tbody.innerHTML = archiveSrutList.map(item => `
-                <tr class="hover:bg-slate-50/40 border-b border-slate-100 bg-slate-50/20 text-slate-500">
-                    <td class="p-4 font-code text-xs text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
-                    <td class="p-4 font-code text-[11px] leading-normal">Rangka: ${item.rangka}<br>Mesin: ${item.mesin}</td>
-                    <td class="p-4 leading-normal"><span class="text-slate-700 text-xs font-medium">${item.merk}</span><br><span class="text-[11px] text-slate-400 font-mono uppercase">${item.pemilik}</span></td>
-                    <td class="p-4 text-center">${getStatusBadge(item.status || 'Selesai')}</td>
+                <tr class="bg-slate-50/30 text-slate-500 border-b border-slate-100">
+                    <td class="p-4 font-code text-xs font-bold text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
+                    <td class="p-4 font-code text-[11px]">Rangka: ${item.rangka}<br>Mesin: ${item.mesin}</td>
+                    <td class="p-4 text-xs"><strong>${item.merk}</strong><br><span class="uppercase text-[10px] font-mono">${item.pemilik}</span></td>
+                    <td class="p-4 text-center"><span class="bg-slate-100 text-slate-600 text-[10px] font-bold font-code px-2.5 py-1 rounded-md border border-slate-300">COMPLETED</span></td>
                 </tr>`).join('');
         }
 
         function renderArchiveSkrbTable() {
-            const tbody = document.getElementById('table-arch-skrb-body'); if (archiveSkrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic font-medium">Gudang arsip kosong.</td></tr>`; return; }
+            const tbody = document.getElementById('table-arch-skrb-body'); if (archiveSkrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip kosong.</td></tr>`; return; }
             tbody.innerHTML = archiveSkrbList.map(item => `
-                <tr class="hover:bg-slate-50/40 border-b border-slate-100 bg-slate-50/20 text-slate-500">
-                    <td class="p-4 font-code text-xs text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
-                    <td class="p-4 leading-normal"><strong class="text-slate-700 text-xs font-medium">${item.jenis}</strong><br><span class="text-slate-400 text-[11px]">${item.perusahaan}</span></td>
+                <tr class="bg-slate-50/30 text-slate-500 border-b border-slate-100">
+                    <td class="p-4 font-code text-xs font-bold text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
+                    <td class="p-4 text-xs"><strong>${item.jenis}</strong><br><span>${item.perusahaan}</span></td>
                     <td class="p-4 font-code text-[11px]">${item.landasan}</td>
-                    <td class="p-4 text-center">${getStatusBadge(item.status || 'Selesai')}</td>
+                    <td class="p-4 text-center"><span class="bg-slate-100 text-slate-600 text-[10px] font-bold font-code px-2.5 py-1 rounded-md border border-slate-300">COMPLETED</span></td>
                 </tr>`).join('');
         }
 
         function handleSearchArchive() {
-            const searchInput = document.getElementById('search-archive');
-            if (!searchInput) return;
-            const query = searchInput.value.toLowerCase();
-            
-            const srutRows = document.querySelectorAll('#table-arch-srut-body tr');
-            srutRows.forEach(row => {
-                if (row.querySelector('td[colspan]')) return; 
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(query) ? '' : 'none';
-            });
-
-            const skrbRows = document.querySelectorAll('#table-arch-skrb-body tr');
-            skrbRows.forEach(row => {
-                if (row.querySelector('td[colspan]')) return; 
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(query) ? '' : 'none';
+            const query = document.getElementById('search-archive')?.value.toLowerCase() || "";
+            document.querySelectorAll('#table-arch-srut-body tr, #table-arch-skrb-body tr').forEach(row => {
+                if (!row.querySelector('td[colspan]')) row.style.display = row.innerText.toLowerCase().includes(query) ? '' : 'none';
             });
         }
 
         function formatDate(dateStr) {
             if (!dateStr) return "-";
             const d = new Date(dateStr);
-            if (isNaN(d.getTime())) return dateStr;
-            return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+            return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            switchTab('dashboard');
-        });
+        document.addEventListener('DOMContentLoaded', () => { loadData(); switchTab('dashboard'); });
     </script>
 </body>
 </html>

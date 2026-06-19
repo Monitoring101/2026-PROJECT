@@ -129,7 +129,7 @@
                                 <option value="Kepala BPTD">4. Kepala BPTD</option>
                                 <option value="Staff Kemenhub">5. Staff Kemenhub</option>
                                 <option value="Kasi Kemenhub">6. Kasi Kemenhub</option>
-				<option value="Selesai">7. Selesai</option>
+                                <option value="Selesai">7. Selesai</option>
                             </select>
                         </div>
                         <div class="flex gap-2 pt-3">
@@ -214,6 +214,8 @@
                         <tbody id="table-arch-srut-body" class="divide-y divide-slate-100 bg-white text-slate-600"></tbody>
                     </table>
                 </div>
+                <!-- Navigasi Paginasi DATA SRUT -->
+                <div id="pagination-arch-srut" class="flex justify-end gap-1 mt-4"></div>
             </div>
 
             <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs">
@@ -221,11 +223,13 @@
                 <div class="overflow-x-auto rounded-xl border border-slate-100">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">No Pendaftaran</th><th class="p-4">Tgl Input</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status Akhir</th></tr>
+                            <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-500 font-code font-bold uppercase text-[11px] tracking-wider"><th class="p-4">Nomor SKRB</th><th class="p-4">Tanggal SKRB</th><th class="p-4">Konstruksi Karoseri</th><th class="p-4">Chassis Landasan</th><th class="p-4 text-center">Status Akhir</th></tr>
                         </thead>
                         <tbody id="table-arch-skrb-body" class="divide-y divide-slate-100 bg-white text-slate-600"></tbody>
                     </table>
                 </div>
+                <!-- Navigasi Paginasi DATA SKRB -->
+                <div id="pagination-arch-skrb" class="flex justify-end gap-1 mt-4"></div>
             </div>
         </div>
 
@@ -240,6 +244,12 @@
         const FLOW_STEPS_SKRB = ["Verifikator", "Konseptor", "Kasi Kemenhub", "Kasubdit Kemenhub", "Dirjend Kemenhub", "Selesai"];
 
         let srutList = [], skrbList = [], archiveSrutList = [], archiveSkrbList = [];
+        
+        // State Tambahan untuk Mengelola Paginasi (Per 10 Data)
+        let filteredArchiveSrutList = [], filteredArchiveSkrbList = [];
+        let archiveSrutPage = 1, archiveSkrbPage = 1;
+        const rowsPerPage = 10;
+
         let editSrutId = null, editSkrbId = null;
         let trendChartInstance = null, prosesChartInstance = null, selesaiChartInstance = null;
 
@@ -257,10 +267,15 @@
                 archiveSrutList = data.archive_srut || [];
                 archiveSkrbList = data.archive_skrb || [];
 
+                // Sinkronisasi data awal untuk filter paginasi
+                filteredArchiveSrutList = [...archiveSrutList];
+                filteredArchiveSkrbList = [...archiveSkrbList];
+                archiveSrutPage = 1;
+                archiveSkrbPage = 1;
+
                 renderSrutTable(); renderSkrbTable();
                 renderArchiveSrutTable(); renderArchiveSkrbTable();
-                handleSearchArchive();
-
+                
                 document.getElementById('count-srut').innerText = srutList.length;
                 document.getElementById('count-skrb').innerText = skrbList.length;
                 document.getElementById('count-arch-srut').innerText = archiveSrutList.length;
@@ -292,7 +307,7 @@
         function getStatusBadge(status) {
             let colors = "bg-slate-100 text-slate-700 border-slate-300";
             switch(status) {
-                case "Verifikator": case "Verifikator": 
+                case "Verifikator": 
                     colors = "bg-blue-50 text-blue-700 border-blue-200"; break;
                 case "Penguji BPTD": case "Konseptor": 
                     colors = "bg-purple-50 text-purple-700 border-purple-200"; break;
@@ -302,8 +317,6 @@
                     colors = "bg-amber-50 text-amber-700 border-amber-200"; break;
                 case "Staff Kemenhub": case "Dirjend Kemenhub": 
                     colors = "bg-orange-50 text-orange-700 border-orange-200"; break;
-		 case "Kasi Kemenhub":
-                    colors = "bg-indigo-50 text-indigo-700 border-indigo-200"; break;
                 case "Selesai": 
                     colors = "bg-emerald-50 text-emerald-700 border-emerald-200 animate-pulse"; break;
             }
@@ -572,34 +585,118 @@
             }).join('');
         }
 
-        // --- ARSIP RENDER ---
+        // --- ARSIP RENDER (DENGAN PAGINASI PER 10 DATA) ---
         function renderArchiveSrutTable() {
-            const tbody = document.getElementById('table-arch-srut-body'); if (archiveSrutList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip kosong.</td></tr>`; return; }
-            tbody.innerHTML = archiveSrutList.map(item => `
+            const tbody = document.getElementById('table-arch-srut-body'); 
+            if (filteredArchiveSrutList.length === 0) { 
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip tidak ditemukan.</td></tr>`; 
+                document.getElementById('pagination-arch-srut').innerHTML = '';
+                return; 
+            }
+            
+            // Logika pemotongan indeks array per 10 data
+            const start = (archiveSrutPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredArchiveSrutList.slice(start, end);
+
+            tbody.innerHTML = pageData.map(item => `
                 <tr class="bg-slate-50/30 text-slate-500 border-b border-slate-100">
                     <td class="p-4 font-code text-xs font-bold text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
                     <td class="p-4 font-code text-[11px]">Rangka: ${item.rangka}<br>Mesin: ${item.mesin}</td>
                     <td class="p-4 text-xs"><strong>${item.merk}</strong><br><span class="uppercase text-[10px] font-mono">${item.pemilik}</span></td>
                     <td class="p-4 text-center"><span class="bg-slate-100 text-slate-600 text-[10px] font-bold font-code px-2.5 py-1 rounded-md border border-slate-300">COMPLETED</span></td>
                 </tr>`).join('');
+
+            // Tampilkan tombol navigasi halaman
+            buildPaginationDOM('pagination-arch-srut', filteredArchiveSrutList.length, archiveSrutPage, (newPage) => {
+                archiveSrutPage = newPage;
+                renderArchiveSrutTable();
+            });
         }
 
         function renderArchiveSkrbTable() {
-            const tbody = document.getElementById('table-arch-skrb-body'); if (archiveSkrbList.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip kosong.</td></tr>`; return; }
-            tbody.innerHTML = archiveSkrbList.map(item => `
+            const tbody = document.getElementById('table-arch-skrb-body'); 
+            if (filteredArchiveSkrbList.length === 0) { 
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Arsip tidak ditemukan.</td></tr>`; 
+                document.getElementById('pagination-arch-skrb').innerHTML = '';
+                return; 
+            }
+            
+            // Logika pemotongan indeks array per 10 data
+            const start = (archiveSkrbPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredArchiveSkrbList.slice(start, end);
+
+            tbody.innerHTML = pageData.map(item => `
                 <tr class="bg-slate-50/30 text-slate-500 border-b border-slate-100">
                     <td class="p-4 font-code text-xs font-bold text-slate-700">${item.no}</td><td class="p-4 text-xs">${formatDate(item.tanggal)}</td>
                     <td class="p-4 text-xs"><strong>${item.jenis}</strong><br><span>${item.perusahaan}</span></td>
                     <td class="p-4 font-code text-[11px]">${item.landasan}</td>
                     <td class="p-4 text-center"><span class="bg-slate-100 text-slate-600 text-[10px] font-bold font-code px-2.5 py-1 rounded-md border border-slate-300">COMPLETED</span></td>
                 </tr>`).join('');
+
+            // Tampilkan tombol navigasi halaman
+            buildPaginationDOM('pagination-arch-skrb', filteredArchiveSkrbList.length, archiveSkrbPage, (newPage) => {
+                archiveSkrbPage = newPage;
+                renderArchiveSkrbTable();
+            });
         }
 
+        // Fungsi Helper untuk Membuat Tombol Navigasi Paginasi secara Dinamis
+        function buildPaginationDOM(containerId, totalItems, currentPage, onPageChange) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = "";
+
+            const totalPages = Math.ceil(totalItems / rowsPerPage);
+            if (totalPages <= 1) return; // Menyembunyikan komponen jika data <= 10 baris
+
+            // Tombol Back (Sebelumnya)
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = "‹";
+            prevBtn.className = `px-3 py-1.5 text-xs rounded-lg border font-code transition-all cursor-pointer ${currentPage === 1 ? 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`;
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => onPageChange(currentPage - 1);
+            container.appendChild(prevBtn);
+
+            // Daftar Angka Halaman
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.innerText = i;
+                pageBtn.className = `px-3 py-1.5 text-xs rounded-lg border font-code font-bold transition-all cursor-pointer ${i === currentPage ? 'bg-teal-600 text-white border-teal-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`;
+                pageBtn.onclick = () => onPageChange(i);
+                container.appendChild(pageBtn);
+            }
+
+            // Tombol Next (Selanjutnya)
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = "›";
+            nextBtn.className = `px-3 py-1.5 text-xs rounded-lg border font-code transition-all cursor-pointer ${currentPage === totalPages ? 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`;
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => onPageChange(currentPage + 1);
+            container.appendChild(nextBtn);
+        }
+
+        // Manajemen Fungsi Pencarian Terintegrasi dengan Paginasi Real-time
         function handleSearchArchive() {
             const query = document.getElementById('search-archive')?.value.toLowerCase() || "";
-            document.querySelectorAll('#table-arch-srut-body tr, #table-arch-skrb-body tr').forEach(row => {
-                if (!row.querySelector('td[colspan]')) row.style.display = row.innerText.toLowerCase().includes(query) ? '' : 'none';
-            });
+            
+            // Filter list SRUT berdasarkan text input query
+            filteredArchiveSrutList = archiveSrutList.filter(item => 
+                Object.values(item).some(val => String(val).toLowerCase().includes(query))
+            );
+            
+            // Filter list SKRB berdasarkan text input query
+            filteredArchiveSkrbList = archiveSkrbList.filter(item => 
+                Object.values(item).some(val => String(val).toLowerCase().includes(query))
+            );
+            
+            // Reset halaman kembali ke posisi awal (1) setiap kali mencari data
+            archiveSrutPage = 1;
+            archiveSkrbPage = 1;
+            
+            renderArchiveSrutTable();
+            renderArchiveSkrbTable();
         }
 
         function formatDate(dateStr) {
